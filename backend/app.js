@@ -3,7 +3,11 @@ const app=express();
 
 const dotenv=require('dotenv')
 const path=require('path')
+const connectDatbase=require('./config/connectDatabase')
+
 dotenv.config({path: path.join(__dirname, 'config', 'config.env')})
+
+connectDatbase();   
 
 const products= require('./routes/product');
 const orders= require('./routes/order');
