@@ -9,6 +9,9 @@ dotenv.config({path: path.join(__dirname, 'config', 'config.env')})
 
 connectDatbase();   
 
+//To ensure that the data sent  is JSON data
+app.use(express.json())
+
 const products= require('./routes/product');
 const orders= require('./routes/order');
 
