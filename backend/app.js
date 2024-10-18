@@ -14,11 +14,12 @@ connectDatbase();
 
 //To ensure that the data sent  is JSON data
 app.use(express.json())
+app.use(cors());
 
 const products= require('./routes/product');
 const orders= require('./routes/order');
 
-app.use(cors());
+
 
 app.use('/api/v1',products);
 
