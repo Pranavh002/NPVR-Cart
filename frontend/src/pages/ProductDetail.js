@@ -25,16 +25,16 @@ export default function ProductDetail({ cartItems, setCartItems }) {
 
     }
 
-    function increaseQty(){
-        if(product.stock==qty){
+    function increaseQty() {
+        if (product.stock == qty) {
             return;
         }
-        setQty((state)=> state+1);
+        setQty((state) => state + 1);
     }
 
-    function decreaseQty(){
-        if(qty>1){
-            setQty((state)=>state-1)
+    function decreaseQty() {
+        if (qty > 1) {
+            setQty((state) => state - 1)
         }
     }
 
@@ -65,7 +65,7 @@ export default function ProductDetail({ cartItems, setCartItems }) {
 
                         <span className="btn btn-primary plus" onClick={increaseQty}>+</span>
                     </div>
-                    <button type="button" id="cart_btn" onClick={addToCart} className="btn btn-primary d-inline ml-4">Add to Cart</button>
+                    <button type="button" id="cart_btn" onClick={addToCart} disabled={product.stock===0} className="btn btn-primary d-inline ml-4">Add to Cart</button>
 
                     <hr />
 
