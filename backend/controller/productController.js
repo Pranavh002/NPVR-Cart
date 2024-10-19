@@ -4,8 +4,12 @@ const ProductModel=require('../models/productModel')
 //Get Single Product API- '/api/v1/product'
 
 exports.getProducts=async (req, res, next)=>{
-
-    const products= await ProductModel.find({})       //takes the entire model if given empty{} inside find method
+    const query= req.query.keyword?{name:{
+        $regex:req.query.keyword,
+        $options:'i'
+    }}:{}
+    // const products= await ProductModel.find({})       //takes the entire model if given empty{} inside find method
+    const products= await ProductModel.find(query)
     res.json({
         sucess: true,
         products
