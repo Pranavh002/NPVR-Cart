@@ -1,15 +1,17 @@
-const ProductModel=require('../models/productModel')
+const ProductModel = require('../models/productModel')
 
 
 //Get Single Product API- '/api/v1/product'
 
-exports.getProducts=async (req, res, next)=>{
-    const query= req.query.keyword?{name:{
-        $regex:req.query.keyword,
-        $options:'i'
-    }}:{}
+exports.getProducts = async (req, res, next) => {
+    const query = req.query.keyword ? {
+        name: {
+            $regex: req.query.keyword,
+            $options: 'i'
+        }
+    } : {}
     // const products= await ProductModel.find({})       //takes the entire model if given empty{} inside find method
-    const products= await ProductModel.find(query)
+    const products = await ProductModel.find(query)
     res.json({
         sucess: true,
         products
@@ -19,19 +21,19 @@ exports.getProducts=async (req, res, next)=>{
 
 //Get Single Product API- '/api/v1/product/:id'
 
-exports.getSingleProduct=async(req, res, next)=>{
-   
-    try{
+exports.getSingleProduct = async (req, res, next) => {
+
+    try {
         const product = await ProductModel.findById(req.params.id);
         res.json({
-            sucess:true,
+            sucess: true,
             product
         })
 
     }
-    catch(error){
+    catch (error) {
         res.status(404).json({
-            sucess:false,
+            sucess: false,
             message: "Product Not found"
         })
 

@@ -4,28 +4,28 @@ import { useSearchParams } from 'react-router-dom';
 
 
 export default function Home() {
-    const [products,setProducts] =useState([]);
-    const [searchparams,setSearchParams]=useSearchParams();
+    const [products, setProducts] = useState([]);
+    const [searchparams, setSearchParams] = useSearchParams();
 
-    useEffect(()=>{
-        fetch(process.env.REACT_APP_API_URL+'/product?'+searchparams)
-        .then(res=> res.json())
-        .then(res=> setProducts(res.products))
+    useEffect(() => {
+        fetch(process.env.REACT_APP_API_URL + '/product?' + searchparams)
+            .then(res => res.json())
+            .then(res => setProducts(res.products))
 
-    },[searchparams])
+    }, [searchparams])
     return <Fragment>
 
         <h1 id="products_heading">Latest Products</h1>
 
         <section id="products" className="container mt-5">
             <div className="row">
-                {products.map(product=><ProductCard product={product}/>)}
-               
+                {products.map(product => <ProductCard product={product} />)}
+
 
             </div>
         </section>
 
-     
+
 
 
     </Fragment>
