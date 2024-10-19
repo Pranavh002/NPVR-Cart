@@ -15,8 +15,12 @@ export default function ProductDetail({ cartItems, setCartItems }) {
     }, [])
 
     function addToCart() {
-        const newItem = { product, qty }
-        setCartItems((state) => [...state, newItem]);
+        const itemExists=cartItems.find((item)=>item.product._id==product._id);
+        if(!itemExists){
+            const newItem = { product, qty }
+            setCartItems((state) => [...state, newItem]);
+        }
+
 
     }
 
