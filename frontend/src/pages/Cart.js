@@ -1,30 +1,35 @@
-export default function Cart() {
+import {Fragment} from 'react'
+import {Link} from 'react-router-dom'
+
+export default function Cart({cartItems, setCartItems}) {
     return (
         <div class="container container-fluid">
-            <h2 class="mt-5">Your Cart: <b>2 items</b></h2>
+            <h2 class="mt-5">Your Cart: <b>{cartItems.length} items</b></h2>
 
             <div class="row d-flex justify-content-between">
                 <div class="col-12 col-lg-8">
+                    {cartItems.map((item)=>(
+                    <Fragment>
                     <hr />
                     <div class="cart-item">
                         <div class="row">
                             <div class="col-4 col-lg-3">
-                                <img src="/images/products/1.jpg" alt="Laptop" height="90" width="115" />
+                                <img src={item.product.images[0].image} alt={item.product.name} height="90" width="115" />
                             </div>
 
                             <div class="col-5 col-lg-3">
-                                <a href="#">OPPO F21s Pro 5G (Dawnlight Gold, 8GB RAM, 128 Storage) with No Cost EMI/Additional Exchange Offers</a>
+                                <Link to={"/product/"+item.product._id}>{item.product.name}</Link>
                             </div>
 
 
                             <div class="col-4 col-lg-2 mt-4 mt-lg-0">
-                                <p id="card_item_price">$245.67</p>
+                                <p id="card_item_price">${item.product.price}</p>
                             </div>
 
                             <div class="col-4 col-lg-3 mt-4 mt-lg-0">
                                 <div class="stockCounter d-inline">
                                     <span class="btn btn-danger minus">-</span>
-                                    <input type="number" class="form-control count d-inline" value="1" readOnly />
+                                    <input type="number" class="form-control count d-inline" value={item.qty} readOnly />
 
                                     <span class="btn btn-primary plus">+</span>
                                 </div>
@@ -36,7 +41,8 @@ export default function Cart() {
 
                         </div>
                     </div>
-                    <hr />
+                    </Fragment>)
+                    )}
                 </div>
 
                 <div class="col-12 col-lg-3 my-4">
