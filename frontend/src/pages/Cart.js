@@ -1,47 +1,74 @@
-import {Fragment} from 'react'
-import {Link} from 'react-router-dom'
+import { Fragment } from 'react'
+import { Link } from 'react-router-dom'
 
-export default function Cart({cartItems, setCartItems}) {
+export default function Cart({ cartItems, setCartItems }) {
+
+    function increaseQty(item) {
+        if (item.product.stock == item.qty) {
+            return;
+        }
+        const updatedItems = cartItems.map((i) => {
+            if (i.product._id == item.product._id) {
+                i.qty++;
+            }
+            return i
+        })
+        setCartItems(updatedItems);
+    }
+
+    function decreaseQty(item) {
+        if (item.qty > 1) {
+            const updatedItems = cartItems.map((i) => {
+                if (i.product._id == item.product._id) {
+                    i.qty--;
+                }
+                return i
+            })
+            setCartItems(updatedItems)
+        }
+
+    }
+
     return (
         <div class="container container-fluid">
             <h2 class="mt-5">Your Cart: <b>{cartItems.length} items</b></h2>
 
             <div class="row d-flex justify-content-between">
                 <div class="col-12 col-lg-8">
-                    {cartItems.map((item)=>(
-                    <Fragment>
-                    <hr />
-                    <div class="cart-item">
-                        <div class="row">
-                            <div class="col-4 col-lg-3">
-                                <img src={item.product.images[0].image} alt={item.product.name} height="90" width="115" />
-                            </div>
+                    {cartItems.map((item) => (
+                        <Fragment>
+                            <hr />
+                            <div class="cart-item">
+                                <div class="row">
+                                    <div class="col-4 col-lg-3">
+                                        <img src={item.product.images[0].image} alt={item.product.name} height="90" width="115" />
+                                    </div>
 
-                            <div class="col-5 col-lg-3">
-                                <Link to={"/product/"+item.product._id}>{item.product.name}</Link>
-                            </div>
+                                    <div class="col-5 col-lg-3">
+                                        <Link to={"/product/" + item.product._id}>{item.product.name}</Link>
+                                    </div>
 
 
-                            <div class="col-4 col-lg-2 mt-4 mt-lg-0">
-                                <p id="card_item_price">${item.product.price}</p>
-                            </div>
+                                    <div class="col-4 col-lg-2 mt-4 mt-lg-0">
+                                        <p id="card_item_price">${item.product.price}</p>
+                                    </div>
 
-                            <div class="col-4 col-lg-3 mt-4 mt-lg-0">
-                                <div class="stockCounter d-inline">
-                                    <span class="btn btn-danger minus">-</span>
-                                    <input type="number" class="form-control count d-inline" value={item.qty} readOnly />
+                                    <div class="col-4 col-lg-3 mt-4 mt-lg-0">
+                                        <div class="stockCounter d-inline">
+                                            <span class="btn btn-danger minus" onClick={() => decreaseQty(item)}>-</span>
+                                            <input type="number" class="form-control count d-inline" value={item.qty} readOnly />
 
-                                    <span class="btn btn-primary plus">+</span>
+                                            <span class="btn btn-primary plus" onClick={() => increaseQty(item)}>+</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-4 col-lg-1 mt-4 mt-lg-0">
+                                        <i id="delete_cart_item" class="fa fa-trash btn btn-danger"></i>
+                                    </div>
+
                                 </div>
                             </div>
-
-                            <div class="col-4 col-lg-1 mt-4 mt-lg-0">
-                                <i id="delete_cart_item" class="fa fa-trash btn btn-danger"></i>
-                            </div>
-
-                        </div>
-                    </div>
-                    </Fragment>)
+                        </Fragment>)
                     )}
                 </div>
 
