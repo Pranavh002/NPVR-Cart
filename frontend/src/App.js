@@ -9,7 +9,9 @@ import { useState } from 'react';
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 import Cart from './pages/Cart';
-
+import Login from './pages/Login';
+import Register from './pages/Register';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -23,7 +25,16 @@ function App() {
             <Route path='/' element={<Home />} />
             <Route path='/search' element={<Home />} />
             <Route path='/product/:id' element={<ProductDetail cartItems={cartItems} setCartItems={setCartItems} />} />
-            <Route path='cart' element={<Cart cartItems={cartItems} setCartItems={setCartItems} />} />
+            <Route
+              path="/cart"
+              element={
+                <ProtectedRoute>
+                  <Cart cartItems={cartItems} setCartItems={setCartItems} />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
           </Routes>
         </div>
       </Router>

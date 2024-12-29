@@ -5,6 +5,7 @@ const cors=require('cors');
 const dotenv=require('dotenv')
 const path=require('path')
 const connectDatbase=require('./config/connectDatabase')
+const authRoutes = require('./routes/auth'); // Adjust path as necessary
 
 dotenv.config({path: path.join(__dirname, 'config', 'config.env')})
 
@@ -18,6 +19,8 @@ app.use(cors());
 
 const products= require('./routes/product');
 const orders= require('./routes/order');
+
+app.use('/auth', authRoutes);
 
 
 

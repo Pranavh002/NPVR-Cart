@@ -1,0 +1,59 @@
+/* src/styles/register.css */
+.register-container {
+  padding: 30px;
+  background-color: #fff;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.register-container h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 30px; /* Add spacing below the title */
+}
+
+.register-container .form-group {
+  margin-bottom: 20px; /* Space between each input field */
+}
+
+.register-container .custom-input {
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+  background-color: #f9f9f9;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.register-container .custom-input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  outline: none;
+}
+
+.register-container button {
+  font-size: 1rem;
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 20px; /* Add space between input fields and button */
+}
+
+.register-container button:hover {
+  background-color: #0056b3;
+}
+
+.register-container .text-center p {
+  font-size: 1rem;
+}
+
+.register-container .text-center a {
+  font-weight: 600;
+  color: #007bff;
+}
+
+.register-container .text-center a:hover {
+  text-decoration: underline;
+}
